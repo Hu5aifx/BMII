@@ -70,10 +70,10 @@
     <div class="container">
         <h2 style="color: #ff6f61;">BMI Calculator</h2>
         <img src="https://cdn-icons-png.flaticon.com/512/2920/2920323.png" width="80" alt="BMI Icon">
-        <input type="number" id="height" placeholder="Enter height (in inches)" required>
-        <input type="number" id="weight" placeholder="Enter weight (in pounds)" required>
+        <input type="number" id="height" placeholder="Enter height (in inches)" min="1" required>
+        <input type="number" id="weight" placeholder="Enter weight (in pounds)" min="1" required>
         <button onclick="calculateBMI()">Calculate BMI</button>
-        <button onclick="reload()">Clear</button>
+        <button onclick="clearFields()">Clear</button>
         <div class="result" id="bmiResult"></div>
         <p id="message"></p>
         <div class="footer">Made by Huzaifa Babar</div>
@@ -83,8 +83,9 @@
         function calculateBMI() {
             let height = parseFloat(document.getElementById('height').value);
             let weight = parseFloat(document.getElementById('weight').value);
-            if (!height || !weight) {
-                alert("Please enter valid height and weight.");
+
+            if (!height || !weight || height <= 0 || weight <= 0) {
+                alert("Please enter valid height and weight values.");
                 return;
             }
 
@@ -93,22 +94,23 @@
 
             let message = "";
             if (bmi < 18.5) {
-                message = "You are underweight. Eat something!";
+                message = "Underweight: You may need to gain weight for optimal health.";
             } else if (bmi >= 18.5 && bmi <= 24.9) {
-                message = "You have a healthy weight!";
+                message = "Normal weight: Keep maintaining a healthy lifestyle!";
             } else if (bmi >= 25 && bmi <= 29.9) {
-                message = "You are overweight. Consider exercising!";
+                message = "Overweight: Consider a balanced diet and regular exercise.";
             } else {
-                message = "You are obese. Please consult a doctor!";
+                message = "Obese: Please consult a healthcare professional for guidance.";
             }
             document.getElementById('message').innerText = message;
         }
 
-          function reload() {
-    document.getElementById('height').value = "";
-    document.getElementById('weight').value = "";
-}
-
+        function clearFields() {
+            document.getElementById('height').value = "";
+            document.getElementById('weight').value = "";
+            document.getElementById('bmiResult').innerText = "";
+            document.getElementById('message').innerText = "";
+        }
     </script>
 </body>
 </html>
