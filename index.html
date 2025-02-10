@@ -12,6 +12,26 @@
             color: white;
             animation: fadeIn 1s ease-in-out;
         }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: bold;
+            z-index: 1000;
+            animation: fadeOut 3s ease-in-out forwards;
+        }
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; visibility: hidden; }
+        }
         .container {
             max-width: 400px;
             margin: auto;
@@ -67,6 +87,7 @@
     </style>
 </head>
 <body>
+    <div class="overlay">Made by Huzaifa Babar</div>
     <div class="container">
         <h2 style="color: #ff6f61;">BMI Calculator</h2>
         <img src="https://cdn-icons-png.flaticon.com/512/2920/2920323.png" width="80" alt="BMI Icon">
