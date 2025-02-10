@@ -70,8 +70,8 @@
     <div class="container">
         <h2 style="color: #ff6f61;">BMI Calculator</h2>
         <img src="https://cdn-icons-png.flaticon.com/512/2920/2920323.png" width="80" alt="BMI Icon">
-        <input type="number" id="height" placeholder="Enter height (in inches)" min="1" required>
-        <input type="number" id="weight" placeholder="Enter weight (in pounds)" min="1" required>
+        <input type="number" id="height" placeholder="Enter height (in feet)" min="1" required>
+        <input type="number" id="weight" placeholder="Enter weight (in kg)" min="1" required>
         <button onclick="calculateBMI()">Calculate BMI</button>
         <button onclick="clearFields()">Clear</button>
         <div class="result" id="bmiResult"></div>
@@ -89,7 +89,8 @@
                 return;
             }
 
-            let bmi = (weight / (height * height)) * 703;
+            let heightInMeters = height * 0.3048; // Convert feet to meters
+            let bmi = weight / (heightInMeters * heightInMeters);
             document.getElementById('bmiResult').innerText = `Your BMI is: ${bmi.toFixed(2)}`;
 
             let message = "";
